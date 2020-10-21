@@ -1,0 +1,37 @@
+spring:
+   liquibase:
+      enabled: true
+      change-log: "classpath:db/changelog/changelog-master.xml"
+      
+   datasource:
+      url: "jdbc:mysql://localhost:3306/webshop?serverTimezone=UTC&createDatabaseIfNotExist=true"
+      driver-class-name: com.mysql.jdbc.Driver
+      username: springstudent
+      password: springstudent
+      
+   jpa:
+      show-sql: true
+      hibernate:
+         ddl-auto: none
+         
+   security:
+      oauth2:
+         client:
+            registration:
+               github:
+                  clientId: 1f1488d468e3e07cb7e4
+                  clientSecret: 3000e444783a2bbaa0fd0df9623e8295ba7e1b9a
+                  redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+                  scope:
+                     - user:email
+                     - read:user
+                  
+app:
+   auth:
+      tokenSecret: 82374DBBACSBASEF824923D82FKS82EK9
+      tokenExpirationMsec: 864000000
+   oauth2:
+      authorizedRedirectUris:
+         - http://localhost:3000/oauth2/redirect
+         - myandroidapp://oauth2/redirect
+         - myiosapp://oauth2/redirect
